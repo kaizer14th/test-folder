@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>generate Shape and anim(canvas)</title>
+</head>
+<body>
+<canvas id="canvas" width="700" height="400">canvas is not supported</canvas>
+<canvas id="canvasBackground" width="600" height="600">canvas is not supported</canvas>
+	<script type="text/javascript" >
+		var cntx = document.getElementById('canvas').getContext('2d');
+		var array = [[0,0],[50,0],[50,50],[0,50]];
+		var widthOfRect = 50;
+		var allArray = [array];
+		var offsetX = 100;
+		var spawn = true;
+		var speed = 1;
+		function drawDiamond (array, fillColor) {
+			if (fillColor == undefined) {
+				fillColor = "rgb(0,255,0)";
+			}
+			// cntx.clearRect(0,0,cntx.width,cntx.height);
+			cntx.clearRect(array[0][0] - widthOfRect + 1,array[0][1] + 1 - widthOfRect,100,100);
+
+			cntx.beginPath();
+			cntx.moveTo(array[0][0],array[0][1]);
+			for (var i = array.length - 1; i > 0; i--) {
+				cntx.lineTo(array[i][0],array[i][1]);
+			}
+			cntx.closePath();
+			cntx.fillStyle = fillColor;
+			cntx.fill();
+
+		}
+		window.requestAnimFrame = (function(){
+	return  window.requestAnimationFrame||
+			window.webkitRequestAnimationFrame||
+			window.mozRequestAnimationFrame||
+			window.oRequestAnimationFrame||
+			window.msRequestAnimationFrame||
+			function (callback) {
+				window.setTimeout(callback, 1000/60);
+			};
+})();
+		function draw (array) {
+			for(i in array) {
+				drawDiamond(array[i],"rgb(0,0,0)");
+			}
+		}
+		function render() {
+			draw(allArray);
+		}
+		function update () {
+			if(allArray.length > 0) {
+				for ( i in allArray){
+					var t = allArray[i];
+					for(y in t){
+
+						t[y][1] += speed;
+						t[y][1] += speed;
+						t[y][1] += speed;
+						t[y][1] += speed;
+					}
+				}
+			}
+			if (spawn == true) {
+				setTimeout(function(){
+					var x = Math.floor(Math.random()*700 + 1);
+					var array1 = [[x,0],[x + widthOfRect,0],[x + widthOfRect,0 + widthOfRect],[x,0 + widthOfRect]];
+					allArray.push(array1);
+
+					spawn = true;
+				}, 500);
+				spawn = false;
+				console.log(allArray);
+			}
+
+		}
+		function loop () {
+			requestAnimFrame(function() {
+				loop();
+			});
+			render();
+			update();
+		}
+		function init() {
+			loop();
+
+		}
+		init();
+
+
+
+
+
+	</script>
+</body>
+</html>

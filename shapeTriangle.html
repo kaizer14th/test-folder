@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Triangle Shape(canvas)</title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400">canvas is not supported</canvas>
+	<script type="text/javascript" >
+		var cntx = document.getElementById('canvas').getContext('2d');
+		var array = [[30,0],[60,45],[0,45]];
+		var array1 = [[130,0],[160,45],[100,45]];
+		var offsetX = 100;
+		function drawTriangle (array, fillColor) {
+			if (fillColor == undefined) {
+				fillColor = 0;
+			}
+			cntx.beginPath();
+			cntx.moveTo(array[0][0],array[0][1]);
+			cntx.lineTo(array[1][0],array[1][1]);
+			cntx.lineTo(array[2][0],array[2][1]);
+			cntx.closePath();
+			cntx.fillStyle = fillColor;
+			cntx.fill();
+
+		}
+		drawTriangle(array, "rgb(255,54,23)");
+		drawTriangle(array1, "rgb(251,30,50)");
+
+	</script>
+</body>
+</html>

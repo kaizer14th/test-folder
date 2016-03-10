@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Diamond Shape(canvas)</title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400">canvas is not supported</canvas>
+	<script type="text/javascript" >
+		var cntx = document.getElementById('canvas').getContext('2d');
+		var array = [[30,0],[60,45],[30,90],[0,45]];
+		var offsetX = 100;
+		function drawDiamond (array, fillColor) {
+			if (fillColor == undefined) {
+				fillColor = "rgb(0,0,0)";
+			}
+			cntx.beginPath();
+			cntx.moveTo(array[0][0],array[0][1]);
+			cntx.lineTo(array[1][0],array[1][1]);
+			cntx.lineTo(array[2][0],array[2][1]);
+			cntx.lineTo(array[3][0],array[3][1]);
+			cntx.closePath();
+			cntx.fillStyle = fillColor;
+			cntx.fill();
+
+		}
+		drawDiamond(array, "rgb(255,54,23)");
+		drawDiamond(array);
+
+	</script>
+</body>
+</html>

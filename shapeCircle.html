@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Circle Shape(canvas)</title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400">canvas is not supported</canvas>
+	<script type="text/javascript" >
+		var cntx = document.getElementById('canvas').getContext('2d');
+		var endAngle = Math.PI*2;//full circle
+		//arc(x, y, radius, startAngle, endAngle, anticlockwise)
+		function drawCircle (x, y, radius, color, startAngle, endAngle, anticlockwise) {
+			if (startAngle == undefined) {
+				startAngle = 0;
+			}if (endAngle == undefined) {
+				endAngle = Math.PI*2;
+			}if (anticlockwise == undefined) {
+				anticlockwise = true;
+			}
+			cntx.beginPath();
+			cntx.fillStyle = color;
+	   		cntx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+			cntx.closePath();
+			cntx.fill();
+		}
+		drawCircle(120,50,20);
+		drawCircle(50,50,50,"rgb(255,0,255)");
+		drawCircle(50,120,70,"rgb(255,0,0)");
+		drawCircle(120,120,50,"rgb(0,0,255)");
+
+	</script>
+</body>
+</html>

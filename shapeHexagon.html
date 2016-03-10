@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hexagon Shape(canvas)</title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400">canvas is not supported</canvas>
+	<script type="text/javascript" >
+		var cntx = document.getElementById('canvas').getContext('2d');
+		var array = [[18.5,0],[41.5,0],[60,18.5],[60,41.5],[41.5,60],[18.5,60],[0,41.5],[0,18.5]];
+		var offsetX = 100;
+		function drawDiamond (array, fillColor) {
+			if (fillColor == undefined) {
+				fillColor = "rgb(0,0,0)";
+			}
+			cntx.beginPath();
+			cntx.moveTo(array[0][0],array[0][1]);
+			for (var i = array.length - 1; i > 0; i--) {
+				cntx.lineTo(array[i][0],array[i][1]);
+			}
+			cntx.closePath();
+			cntx.fillStyle = fillColor;
+			cntx.fill();
+
+		}
+		drawDiamond(array, "rgb(255,54,23)");
+		drawDiamond(array);
+
+	</script>
+</body>
+</html>
